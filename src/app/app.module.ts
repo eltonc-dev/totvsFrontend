@@ -9,14 +9,14 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { } from '@angular/material';
 import { NotificacaoService } from './services/notificacao.service';
-import { ServicoTableList2Component } from './components/servico-table-list2/servico-table-list2.component';
+import { ServicoFormDialogComponent } from './components/servico-form-dialog/servico-form-dialog.component';
 
 @NgModule({
   declarations: [
     ServicoCrudComponent,
     ServicoTableListComponent,
     VigenciaServicoCompletaPipe,
-    ServicoTableList2Component
+    ServicoFormDialogComponent,
   ],
   imports: [
     BrowserModule ,
