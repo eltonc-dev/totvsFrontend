@@ -9,6 +9,7 @@ export class GerenciadorServicosService {
   private listaServicos : Array<Servico> = new Array
 
   constructor() { 
+    //todo: remover os dados mockados após criar implementação de adicionar.
     let servico = new Servico()
     servico.descricao = 'algo escrito'
     servico.ativo = true
