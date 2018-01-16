@@ -1,0 +1,39 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="listaServicos" matSort>
+
+    <ng-container matColumnDef="Ativo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ativo </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <input type="checkbox" #checkAtivo [checked]='element.ativo' (click)="mudaStatus(element, checkAtivo.checked)" />
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Descrição">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Descrição </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.descricao}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="Grupo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Grupo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.grupo}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="Alíquota">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Alíquota </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.aliquota}}% </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Data de Vigência">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Data de Vigência </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element | vigenciaServicoCompleta }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Açoes">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
+      <mat-cell *matCellDef="let element"></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+  </mat-table>
+</div>

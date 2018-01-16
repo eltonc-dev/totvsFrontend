@@ -15,7 +15,7 @@ export class Servico {
     private geraId() {
         let random = Math.floor(1000 + Math.random() * 9000);
         let timestamp = Date.now()
-        return timestamp
+        return timestamp + random
     }
 
 
