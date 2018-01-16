@@ -84,6 +84,27 @@ describe('GerenciadorServicosService', () => {
     expect( ( <Servico>resultadoBusca ).dtInicioVigencia ).toEqual( novoServico.dtInicioVigencia )
   }));
 
+  it('método editar deve retornar objeto editado', inject([GerenciadorServicosService], (service: GerenciadorServicosService) => {
+    let novoServico = new Servico()
+    novoServico.descricao = 'Serviço teste sem editar'
+    novoServico.ativo = true
+    novoServico.aliquota = 19
+    novoServico.grupo = 'Restaurante'
+    novoServico.dtFimVigencia = moment().add( 2 , 'days' ).toDate()
+    novoServico.dtInicioVigencia = moment().add( 1 , 'days' ).toDate()
+    service.adicionar(novoServico)
+    novoServico.descricao = "Servico Editado"
+    let resultadoBusca = service.editar( novoServico.id , novoServico )
+
+    expect(resultadoBusca).toEqual( jasmine.any(Servico) )
+    expect( ( <Servico>resultadoBusca ).descricao ).toEqual( novoServico.descricao )
+    expect( ( <Servico>resultadoBusca ).ativo ).toEqual( novoServico.ativo )
+    expect( ( <Servico>resultadoBusca ).aliquota ).toEqual( novoServico.aliquota )
+    expect( ( <Servico>resultadoBusca ).grupo ).toEqual( novoServico.grupo )
+    expect( ( <Servico>resultadoBusca ).dtFimVigencia ).toEqual( novoServico.dtFimVigencia )
+    expect( ( <Servico>resultadoBusca ).dtInicioVigencia ).toEqual( novoServico.dtInicioVigencia )
+  }));
+
   it('método deletar deve retornar erro', inject([GerenciadorServicosService], (service: GerenciadorServicosService) => {
     let resultadoBusca = service.deletar(123)
     expect(resultadoBusca).toEqual( jasmine.any(MensagemErro) )

@@ -8,7 +8,24 @@ export class GerenciadorServicosService {
 
   private listaServicos : Array<Servico> = new Array
 
-  constructor() { }
+  constructor() { 
+    let servico = new Servico()
+    servico.descricao = 'algo escrito'
+    servico.ativo = true
+    servico.aliquota = 19
+    servico.grupo = 'Restaurante'
+    servico.dtFimVigencia = moment().add( 2 , 'days' ).toDate()
+    servico.dtInicioVigencia = moment().add( 1 , 'days' ).toDate()
+    this.adicionar(servico)
+    servico = new Servico()
+    servico.descricao = 'algo escrito 3' 
+    servico.ativo = false
+    servico.aliquota = 4
+    servico.grupo = 'Bar'
+    servico.dtFimVigencia = moment().add( 6 , 'days' ).toDate()
+    servico.dtInicioVigencia = moment().add( 4 , 'days' ).toDate()
+    this.adicionar(servico)
+  }
 
   /**
    * Retorna a lista de serviços
@@ -38,6 +55,22 @@ export class GerenciadorServicosService {
     if( servico.length <= 0 ) return new MensagemErro('Serviço não encontrado com o Id informado.')
     return servico[0]
   }
+
+  /**
+   * editar um serviço
+   * @param id id do Serviço que deseja
+   */
+  editar( id : number , servicoEditado : Servico ) {
+    let servico = this.listaServicos.filter( ( element ) => id === element.id )
+    if( servico.length <= 0 ) return new MensagemErro('Serviço não encontrado com o Id informado.')
+    servico[0].descricao = servicoEditado.descricao
+    servico[0].grupo = servicoEditado.grupo
+    servico[0].aliquota = servicoEditado.aliquota
+    servico[0].dtInicioVigencia = servicoEditado.dtInicioVigencia
+    servico[0].dtFimVigencia = servicoEditado.dtFimVigencia
+    return servico[0]
+  }
+
 
   /**
    * Deleta um serviço da listagem
