@@ -20,7 +20,7 @@ export class ServicoTableListComponent implements OnInit {
   listaServicos : MatTableDataSource<Servico> ;
 
   constructor( private _gerenciadorServicos : GerenciadorServicosService) { 
-    this.colunas = ['Ativo','Descrição','Grupo','Alíquota','Data de Vigência']
+    this.colunas = ['Ativo','Descrição','Grupo','Alíquota','Data de Vigência','Açoes']
     this.listaServicos = new MatTableDataSource(this._gerenciadorServicos.listar());
   }
   

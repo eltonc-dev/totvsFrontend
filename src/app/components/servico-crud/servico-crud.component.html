@@ -1,3 +1,12 @@
-<app-servico-table-list
-    (onChangeStatusServico)="mudaStatusServico($event)"
-></app-servico-table-list>
+<div class="container">
+        <app-servico-form-dialog></app-servico-form-dialog>
+    <div class="row text-right">
+        <button class="btn btn-primary btn-outline">Associar Serviço</button>
+    </div>
+    <div class="row">
+        <app-servico-table-list
+            (onChangeStatusServico)="mudaStatusServico($event)"
+        ></app-servico-table-list>
+    </div>
+</div>
+
