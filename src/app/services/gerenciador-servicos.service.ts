@@ -10,11 +10,11 @@ export class GerenciadorServicosService {
 
   constructor() { 
     //todo: remover os dados mockados após criar implementação de adicionar.
-    let servico = new Servico()
+    /*let servico = new Servico()
     servico.descricao = 'algo escrito'
     servico.ativo = true
     servico.aliquota = 19
-    servico.grupo = 'Restaurante'
+    servico.grupo = 'Restaurantes'
     servico.dtFimVigencia = moment().add( 2 , 'days' ).toDate()
     servico.dtInicioVigencia = moment().add( 1 , 'days' ).toDate()
     this.adicionar(servico)
@@ -22,10 +22,10 @@ export class GerenciadorServicosService {
     servico.descricao = 'algo escrito 3' 
     servico.ativo = false
     servico.aliquota = 4
-    servico.grupo = 'Bar'
+    servico.grupo = 'Bares'
     servico.dtFimVigencia = moment().add( 6 , 'days' ).toDate()
     servico.dtInicioVigencia = moment().add( 4 , 'days' ).toDate()
-    this.adicionar(servico)
+    this.adicionar(servico)*/
   }
 
   /**

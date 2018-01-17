@@ -1,4 +1,7 @@
-<div class="example-container mat-elevation-z8">
+<div *ngIf="servicos.length <= 0" class="text-center">
+  <h2>Cadastre o primeiro serviço utilizando o botão acima.</h2>
+</div>
+<div class="example-container mat-elevation-z8" *ngIf="servicos.length > 0" >
   <mat-table #table [dataSource]="listaServicos" matSort>
 
     <ng-container matColumnDef="Ativo">

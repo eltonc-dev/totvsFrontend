@@ -10,6 +10,8 @@ export class Servico {
 
     constructor(){
         this.id = this.geraId()
+        //ativo por padrão
+        this.ativo = true
     }
 
     private geraId() {

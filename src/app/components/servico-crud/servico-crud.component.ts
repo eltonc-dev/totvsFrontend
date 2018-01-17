@@ -4,6 +4,7 @@ import { GerenciadorServicosService } from '../../services/gerenciador-servicos.
 import { NotificacaoService } from '../../services/notificacao.service';
 import { MensagemErro } from '../../models/mensagem-erro';
 import { ControlaDialogService } from '../../services/controla-dialog.service';
+import { ResponsavelServicos } from '../../interfaces/responsavel-servicos';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { ControlaDialogService } from '../../services/controla-dialog.service';
   templateUrl: './servico-crud.component.html',
   styleUrls: ['./servico-crud.component.css']
 })
-export class ServicoCrudComponent implements OnInit {
+export class ServicoCrudComponent implements OnInit , ResponsavelServicos {
 
   colunas : Array<string>
   listaServicos : Array<Servico>
@@ -22,6 +23,7 @@ export class ServicoCrudComponent implements OnInit {
     this.colunas = ['Ativo','Descrição','Grupo','Alíquota','Data de Vigência','Açoes']
     this.listaServicos = this._gerenciadorServicos.listar();
     this._controladorDialog.setRootViewContainerRef(this._rootViewContainer)
+    this._controladorDialog.setResponsavelSalvar(this)
   }
 
   ngOnInit(){}
@@ -36,17 +38,35 @@ export class ServicoCrudComponent implements OnInit {
   }
 
   
-  addDynamicComponent() {
+  abreModal() {
     this._controladorDialog.adicionarDialogNovo()
   }
 
   editarServico( servico : Servico ) {
-
+    this._controladorDialog.adicionarDialogEditar(servico)
   }
 
   deletarServico( servico : Servico ) {
     this._gerenciadorServicos.deletar(servico.id)
     this.listaServicos = this._gerenciadorServicos.listar()
+  }
+
+  salvar( servico : Servico ) {
+    if( this._gerenciadorServicos.buscarPorId(servico.id) instanceof Servico ) {
+        let result = this._gerenciadorServicos.editar( servico.id , servico)
+        if (  result instanceof Servico ) {
+          this._toast.toastSucesso('Serviço editado com Sucesso')
+        } else {
+          this._toast.toastErro( (<MensagemErro>result).mensagem )
+        }
+    } else {
+      let result = this._gerenciadorServicos.adicionar(servico)
+      if (  result instanceof Servico ) {
+        this._toast.toastSucesso('Serviço Adicionado com Sucesso')
+      } else {
+        this._toast.toastErro( (<MensagemErro>result).mensagem )
+      }
+    }
   }
 }
 

@@ -11,7 +11,9 @@ import { NotificacaoService } from './services/notificacao.service';
 import { ServicoFormDialogComponent } from './components/servico-form-dialog/servico-form-dialog.component';
 import { BotaoControleCrudComponent } from './components/botao-controle-crud/botao-controle-crud.component';
 import { ControlaDialogService } from './services/controla-dialog.service';
-
+import { GerenciadorGruposService } from './services/gerenciador-grupos.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TextMaskModule } from 'angular2-text-mask';
 @NgModule({
   declarations: [
     ServicoCrudComponent,
@@ -27,10 +29,11 @@ import { ControlaDialogService } from './services/controla-dialog.service';
     CdkTableModule ,
     MatTableModule ,
     MatSortModule ,
+    ReactiveFormsModule,
+    TextMaskModule,
     
-
   ],
-  providers: [ GerenciadorServicosService, NotificacaoService, VigenciaServicoCompletaPipe , ControlaDialogService],
+  providers: [ GerenciadorGruposService , GerenciadorServicosService, NotificacaoService, VigenciaServicoCompletaPipe , ControlaDialogService],
   bootstrap: [ServicoCrudComponent],
   entryComponents: [ServicoFormDialogComponent]
 })

@@ -18,6 +18,7 @@ export class ServicoTableListComponent implements OnInit {
 
   @Input() colunas : Array<String>
   @Input() servicos: Array<Servico>
+  
   listaServicos : MatTableDataSource<Servico> ;
 
   constructor( private _gerenciadorServicos : GerenciadorServicosService) { }
@@ -26,9 +27,8 @@ export class ServicoTableListComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit(){
-    //this.listaServicos = new MatTableDataSource(this.servicos);
-  }
+  ngOnInit(){}
+
   ngDoCheck() {
     this.listaServicos = new MatTableDataSource(this.servicos);
   }
