@@ -10,6 +10,7 @@ import { BrowserAnimationsModule , NoopAnimationsModule } from '@angular/platfor
 import { NotificacaoService } from './services/notificacao.service';
 import { ServicoFormDialogComponent } from './components/servico-form-dialog/servico-form-dialog.component';
 import { BotaoControleCrudComponent } from './components/botao-controle-crud/botao-controle-crud.component';
+import { ControlaDialogService } from './services/controla-dialog.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BotaoControleCrudComponent } from './components/botao-controle-crud/bot
     
 
   ],
-  providers: [ GerenciadorServicosService, NotificacaoService, VigenciaServicoCompletaPipe ],
-  bootstrap: [ServicoCrudComponent]
+  providers: [ GerenciadorServicosService, NotificacaoService, VigenciaServicoCompletaPipe , ControlaDialogService],
+  bootstrap: [ServicoCrudComponent],
+  entryComponents: [ServicoFormDialogComponent]
 })
 export class AppModule { }
