@@ -13,7 +13,13 @@ import { MensagemErro } from '../../models/mensagem-erro';
 })
 export class ServicoCrudComponent implements OnInit {
 
-  constructor(private _gerenciadorServicos : GerenciadorServicosService , private _toast : NotificacaoService ) { }
+  colunas : Array<string>
+  listaServicos : Array<Servico>
+
+  constructor(private _gerenciadorServicos : GerenciadorServicosService , private _toast : NotificacaoService ) { 
+    this.colunas = ['Ativo','Descrição','Grupo','Alíquota','Data de Vigência','Açoes']
+    this.listaServicos = this._gerenciadorServicos.listar();
+  }
 
   ngOnInit(){}
 
@@ -24,6 +30,15 @@ export class ServicoCrudComponent implements OnInit {
     } else {
       this._toast.toastErro( (<MensagemErro>resposta).mensagem )
     }
+  }
+
+  editarServico( servico : Servico ) {
+
+  }
+
+  deletarServico( servico : Servico ) {
+    this._gerenciadorServicos.deletar(servico.id)
+    this.listaServicos = this._gerenciadorServicos.listar()
   }
 }
 

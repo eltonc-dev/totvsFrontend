@@ -31,15 +31,11 @@
     <ng-container matColumnDef="Açoes">
       <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
       <mat-cell *matCellDef="let element" class="text-right">
-        <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="glyphicon glyphicon-option-vertical"></i>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Editar</a></li>
-            <li><a href="#">Deletar</a></li>
-          </ul>
-        </div>
+        <app-botao-controle-crud 
+            [servico]='element'  
+            (ativaEdicao)='editar($event)'
+            (ativaDelecao)='deletar($event)'
+            ></app-botao-controle-crud>
       </mat-cell>
     </ng-container>
 

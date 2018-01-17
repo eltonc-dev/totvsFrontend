@@ -6,10 +6,10 @@ import { MatTableModule, MatSortModule } from '@angular/material';
 import { ServicoTableListComponent } from './components/servico-table-list/servico-table-list.component';
 import { VigenciaServicoCompletaPipe } from './pipes/vigencia-servico-completa.pipe';
 import { CdkTableModule } from '@angular/cdk/table';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { } from '@angular/material';
+import { BrowserAnimationsModule , NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificacaoService } from './services/notificacao.service';
 import { ServicoFormDialogComponent } from './components/servico-form-dialog/servico-form-dialog.component';
+import { BotaoControleCrudComponent } from './components/botao-controle-crud/botao-controle-crud.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +17,16 @@ import { ServicoFormDialogComponent } from './components/servico-form-dialog/ser
     ServicoTableListComponent,
     VigenciaServicoCompletaPipe,
     ServicoFormDialogComponent,
+    BotaoControleCrudComponent,
   ],
   imports: [
     BrowserModule ,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     CdkTableModule ,
     MatTableModule ,
     MatSortModule ,
-    BrowserAnimationsModule
+    
 
   ],
   providers: [ GerenciadorServicosService, NotificacaoService, VigenciaServicoCompletaPipe ],

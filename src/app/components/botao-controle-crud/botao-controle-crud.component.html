@@ -1,0 +1,8 @@
+
+<button  (click)='controlaEstadoBotao()' class="btn dropdown-toggle" >
+  <i class="glyphicon glyphicon-option-vertical"></i>
+</button>
+<ul class="dropdown-menu" [@visibilidadeBotao]='estadoBotao'  >
+  <li><a (click)="editarClicado()" >Editar</a></li>
+  <li><a (click)="deletarClicado()" >Deletar</a></li>
+</ul>

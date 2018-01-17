@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { GerenciadorServicosService } from '../../services/gerenciador-servicos.service';
 import { Servico } from '../../models/servico';
@@ -16,27 +16,52 @@ export class ServicoTableListComponent implements OnInit {
   @Output() edicaoAtiva : EventEmitter<Servico> = new EventEmitter()
   @Output() delecaoAtiva : EventEmitter<Servico> = new EventEmitter()
 
-  colunas : Array<String>
+  @Input() colunas : Array<String>
+  @Input() servicos: Array<Servico>
   listaServicos : MatTableDataSource<Servico> ;
 
-  constructor( private _gerenciadorServicos : GerenciadorServicosService) { 
-    this.colunas = ['Ativo','Descrição','Grupo','Alíquota','Data de Vigência','Açoes']
-    this.listaServicos = new MatTableDataSource(this._gerenciadorServicos.listar());
-  }
+  constructor( private _gerenciadorServicos : GerenciadorServicosService) { }
   
 
 
   @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit(){}
+  ngOnInit(){
+    //this.listaServicos = new MatTableDataSource(this.servicos);
+  }
+  ngDoCheck() {
+    this.listaServicos = new MatTableDataSource(this.servicos);
+  }
 
   ngAfterViewInit() {
     this.listaServicos.sort = this.sort;
   }
 
+  /**
+   * Responsável por notificar uma solicitação de mudança de status   
+   * @param servico servico que teve status modificado  
+   * @param value valor do status
+   */
   mudaStatus(servico : Servico, value : boolean) {
     servico.ativo = value
     this.onChangeStatusServico.emit(servico)
+  }
+
+  /**
+   * Notifica a intenção de edição no serviço
+   * @param servico serviço que será editado  
+   */
+  editar( servico : Servico ) {
+    this.edicaoAtiva.emit( servico )
+  }
+
+  /**
+   * Notifica a intenção de deleção no serviço
+   * @param servico serviço que será editado 
+   */
+  deletar( servico : Servico ) {
+    this.delecaoAtiva.emit( servico )
+    
   }
 
 }

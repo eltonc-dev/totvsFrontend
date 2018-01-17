@@ -5,7 +5,11 @@
     </div>
     <div class="row">
         <app-servico-table-list
-            (onChangeStatusServico)="mudaStatusServico($event)"
+            [colunas] = "colunas"
+            [servicos] = "listaServicos"
+            (onChangeStatusServico) = "mudaStatusServico($event)"
+            (edicaoAtiva) = "editarServico($event)"
+            (delecaoAtiva) = "deletarServico($event)"
         ></app-servico-table-list>
     </div>
 </div>
